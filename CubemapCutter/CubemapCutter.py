@@ -40,10 +40,14 @@ for i in range(len( slices )):
 				slices[i][j][1] = 1
 				break
 
+convertToRGB = True #if the original image is RGBA, then this may be useful
+
 for i in range(len( slices )):
 	for j in range( len(slices[i])):
 		if( slices[i][j][1] != 0 ):
-			slices[i][j][0].save( (str(i) + str(j) + '.png'), 'PNG' )
+			if( convertToRGB ):
+				slices[i][j][0] = slices[i][j][0].convert( 'RGB' )
+			slices[i][j][0].save( (str(i) + str(j) + '.bmp'), 'BMP' )
 
 
 print( 'Done' )
